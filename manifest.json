@@ -1,0 +1,28 @@
+{
+  "name": "YouTube Ad Blocker",
+  "description": "Blocks YouTube ads and common ad networks",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["declarativeNetRequest", "declarativeNetRequestWithHostAccess", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Ad Blocker Active"
+  },
+  "background": {},
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
